@@ -1,0 +1,17 @@
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\bin\Debug\net8.0\InventoryMS.Data.deps.json
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\bin\Debug\net8.0\InventoryMS.Data.runtimeconfig.json
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\bin\Debug\net8.0\InventoryMS.Data.dll
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\bin\Debug\net8.0\InventoryMS.Data.pdb
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\bin\Debug\net8.0\InventoryMS.Models.dll
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\bin\Debug\net8.0\InventoryMS.Models.pdb
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.csproj.AssemblyReference.cache
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.AssemblyInfoInputs.cache
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.AssemblyInfo.cs
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.csproj.CoreCompileInputs.cache
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\Inventor.3C838489.Up2Date
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.dll
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\refint\InventoryMS.Data.dll
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.pdb
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.genruntimeconfig.cache
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\ref\InventoryMS.Data.dll
