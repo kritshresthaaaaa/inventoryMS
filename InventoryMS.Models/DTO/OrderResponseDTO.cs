@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace InventoryMS.Models.DTO
 {
-    public class SaleResponseDTO
+    public class OrderResponseDTO
     {
         public int Id { get; set; }
-        public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
         public DateTime SaleDate { get; set; }
         public int ProductId { get; set; }

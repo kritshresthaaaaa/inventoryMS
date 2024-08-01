@@ -20,14 +20,23 @@ namespace InventoryMS.Services
         {
             var product = new Product
             {
+                /*   Name = productDto.Name,
+                   Category = productDto.Category,
+                   Type = productDto.Type,
+                   Description = productDto.Description,
+                   Price = productDto.Price,
+                   StockQuantity = productDto.StockQuantity,
+                   CreatedDate = DateTime.UtcNow,
+                   ModifiedDate = DateTime.UtcNow*/
                 Name = productDto.Name,
-                Category = productDto.Category,
-                Type = productDto.Type,
-                Description = productDto.Description,
+                CategoryId = productDto.CategoryId,
                 Price = productDto.Price,
                 StockQuantity = productDto.StockQuantity,
+                Description = productDto.Description,
                 CreatedDate = DateTime.UtcNow,
-                ModifiedDate = DateTime.UtcNow
+                ModifiedDate = DateTime.UtcNow,
+
+
             };
 
             await _repository.AddAsync(product);
@@ -51,13 +60,20 @@ namespace InventoryMS.Services
 
             return new ProductDto
             {
-                Id = id,
+                /*                Id = id,
+                                Name = product.Name,
+                                Category = product.Category,
+                                Type = product.Type,
+                                Description = product.Description,
+                                Price = product.Price,
+                                StockQuantity = product.StockQuantity*/
+                Id = product.Id,
                 Name = product.Name,
-                Category = product.Category,
-                Type = product.Type,
-                Description = product.Description,
+                CategoryId = product.CategoryId,
                 Price = product.Price,
-                StockQuantity = product.StockQuantity
+                StockQuantity = product.StockQuantity,
+                Description = product.Description
+
             };
         }
 
@@ -65,16 +81,16 @@ namespace InventoryMS.Services
         public async Task<IEnumerable<ProductDto>> GetProductsAsync()
         {
             var products = await _repository.GetAllAsync(); // _repository.GetAllAsync() returns IQueryable<Product>
-  
+
             return products.Select(product => new ProductDto
             {
                 Id = product.Id,
                 Name = product.Name,
-                Category = product.Category,
-                Type = product.Type,
-                Description = product.Description,
+                CategoryId = product.CategoryId,
                 Price = product.Price,
-                StockQuantity = product.StockQuantity
+                StockQuantity = product.StockQuantity,
+                Description = product.Description
+
             }).ToList(); // corvet the projection to a list
         }
 
@@ -86,13 +102,20 @@ namespace InventoryMS.Services
                 throw new KeyNotFoundException("Product not found");
             }
 
+            /* product.Name = productDto.Name;
+             product.Category = productDto.Category;
+             product.Type = productDto.Type;
+             product.Description = productDto.Description;
+             product.Price = productDto.Price;
+             product.StockQuantity = productDto.StockQuantity;
+             product.ModifiedDate = DateTime.UtcNow;*/
             product.Name = productDto.Name;
-            product.Category = productDto.Category;
-            product.Type = productDto.Type;
-            product.Description = productDto.Description;
+            product.CategoryId = productDto.CategoryId;
             product.Price = productDto.Price;
             product.StockQuantity = productDto.StockQuantity;
+            product.Description = productDto.Description;
             product.ModifiedDate = DateTime.UtcNow;
+
 
             await _repository.UpdateAsync(product);
         }

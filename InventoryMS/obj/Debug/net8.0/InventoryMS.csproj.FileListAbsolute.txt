@@ -107,3 +107,4 @@ D:\Skills\Innovate\IMS\InventoryMS\InventoryMS\bin\Debug\net8.0\InventoryMS.Data
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS\bin\Debug\net8.0\InventoryMS.Models.dll
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS\bin\Debug\net8.0\InventoryMS.Data.pdb
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS\bin\Debug\net8.0\InventoryMS.Models.pdb
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS\obj\Debug\net8.0\InventoryMS.sourcelink.json

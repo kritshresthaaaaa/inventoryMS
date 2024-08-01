@@ -9,3 +9,4 @@ D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Models\obj\Debug\net8.0\Inventory
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Models\obj\Debug\net8.0\refint\InventoryMS.Models.dll
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Models\obj\Debug\net8.0\InventoryMS.Models.pdb
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Models\obj\Debug\net8.0\ref\InventoryMS.Models.dll
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Models\obj\Debug\net8.0\InventoryMS.Models.sourcelink.json

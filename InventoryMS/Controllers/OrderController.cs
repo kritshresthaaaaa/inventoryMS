@@ -8,26 +8,26 @@ namespace InventoryMS.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SalesController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        private readonly ISaleService _saleService;
-        private readonly ILogger<SalesController> _logger;
+        private readonly IOrderService _saleService;
+        private readonly ILogger<OrderController> _logger;
 
-        public SalesController(ISaleService saleService, ILogger<SalesController> logger)
+        public OrderController(IOrderService saleService, ILogger<OrderController> logger)
         {
             _saleService = saleService;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SaleResponseDTO>>> GetSales()
+        public async Task<ActionResult<IEnumerable<OrderResponseDTO>>> GetSales()
         {
             var sales = await _saleService.GetSalesAsync();
             return Ok(sales);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<SaleDTO>> GetSale(int id)
+        public async Task<ActionResult<OrderPostDTO>> GetSale(int id)
         {
             var sale = await _saleService.GetSaleByIdAsync(id);
             if (sale == null)
@@ -37,16 +37,16 @@ namespace InventoryMS.Controllers
             return Ok(sale);
         }
         [HttpPost]
-        public async Task<ActionResult<SaleDTO>> CreateSale(SaleDTO saleDto)
+        public async Task<ActionResult<OrderPostDTO>> CreateSale(OrderPostDTO saleDto)
         {
             var newSale = await _saleService.CreateSaleAsync(saleDto);
             return CreatedAtAction(nameof(GetSale), new { id = newSale.Id }, newSale);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSale(int id, SaleDTO saleDto)
+        public async Task<IActionResult> UpdateSale(int id, OrderPostDTO saleDto)
         {
-            if (id != saleDto.ProductId) 
+            if (id != saleDto.CustomerId) 
             {
                 return BadRequest();
             }
@@ -61,8 +61,8 @@ namespace InventoryMS.Controllers
             await _saleService.DeleteSaleAsync(id);
             return NoContent();
         }
-        [HttpGet("per-date")]
-        public async Task<ActionResult<IEnumerable<Sale>>> GetSalesPerDateAsync([FromQuery] DateTime date)
+      /*  [HttpGet("per-date")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerDateAsync([FromQuery] DateTime date)
         {
             _logger.LogInformation($"Received date: {date}");
 
@@ -79,18 +79,18 @@ namespace InventoryMS.Controllers
         }
 
         [HttpGet("per-month")]
-        public async Task<ActionResult<IEnumerable<Sale>>> GetSalesPerMonth([FromQuery] int year, [FromQuery] int month)
+        public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerMonth([FromQuery] int year, [FromQuery] int month)
         {
             return Ok(await _saleService.GetSalesPerMonthAsync(year, month));
         }
 
 
         [HttpGet("per-week")]
-        public async Task<ActionResult<IEnumerable<Sale>>> GetSalesPerWeek([FromQuery] DateTime startDate)
+        public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerWeek([FromQuery] DateTime startDate)
         {
             var utcStartDate = startDate.ToUniversalTime();
             return Ok(await _saleService.GetSalesPerWeekAsync(utcStartDate));
-        }
+        }*/
 
     }
 }

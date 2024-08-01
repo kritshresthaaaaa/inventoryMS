@@ -15,3 +15,4 @@ D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\refint\Inve
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.pdb
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.genruntimeconfig.cache
 D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\ref\InventoryMS.Data.dll
+D:\Skills\Innovate\IMS\InventoryMS\InventoryMS.Data\obj\Debug\net8.0\InventoryMS.Data.sourcelink.json
