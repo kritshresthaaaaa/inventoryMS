@@ -54,12 +54,12 @@ namespace InventoryMS.Services
                 {
                     ProductId = detail.ProductId,
                     Quantity = detail.Quantity,
-                    UnitPrice = product.Price,
-                    TotalPrice = detail.Quantity * product.Price // Calculate total price for this detail
+                   /* UnitPrice = product.Price,
+                    TotalPrice = detail.Quantity * product.Price // Calculate total price for this detail*/
                 };
 
                 newOrder.OrderDetails.Add(orderDetail);
-                totalPrice += orderDetail.TotalPrice; // Sum up the total price
+                /*totalPrice += orderDetail.TotalPrice; // Sum up the total price*/
             }
 
 
@@ -90,27 +90,38 @@ namespace InventoryMS.Services
                 return null;
             }
 
+            decimal totalPrice = 0;
+
+            // Calculate total price by fetching the quantity and product price
+            foreach (var detail in sale.OrderDetails)
+            {
+                totalPrice += detail.Quantity * detail.Product.Price;
+            }
+
+            var firstOrderDetail = sale.OrderDetails.FirstOrDefault();
+
             return new OrderResponseDTO
             {
                 Id = sale.Id,
                 SaleDate = sale.OrderDate,
-                TotalPrice = sale.OrderDetails.Sum(d => d.TotalPrice),
-                ProductId = sale.OrderDetails.First().ProductId,
-                ProductName = sale.OrderDetails.First().Product.Name
-
+                TotalPrice = totalPrice,
+                ProductId = firstOrderDetail?.ProductId ?? 0,
+                ProductName = firstOrderDetail?.Product?.Name ?? string.Empty
             };
-
         }
+
 
         public async Task<IEnumerable<OrderResponseDTO>> GetSalesAsync()
         {
             var salesQueryable = await _orderRepository.GetAllAsync();
 
+    
+
             var saleResponse = salesQueryable.Select(s => new OrderResponseDTO
             {
                 Id = s.Id,
                 SaleDate = s.OrderDate,
-                TotalPrice = s.OrderDetails.Sum(d => d.TotalPrice),
+                TotalPrice = s.OrderDetails.Sum(d => d.Quantity * d.Product.Price),
                 ProductId = s.OrderDetails.First().ProductId,
                 ProductName = s.OrderDetails.First().Product.Name
 
@@ -160,8 +171,7 @@ namespace InventoryMS.Services
                 {
                     ProductId = detail.ProductId,
                     Quantity = detail.Quantity,
-                    UnitPrice = product.Price,
-                    TotalPrice = detail.Quantity * product.Price
+                   
                 };
 
                 sale.OrderDetails.Add(orderDetail);
