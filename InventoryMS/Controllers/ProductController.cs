@@ -50,10 +50,16 @@ namespace InventoryMS.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+/*        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
             await _productService.DeleteProductAsync(id);
+            return NoContent();
+        }*/
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> SoftDeleteProduct(int id)
+        {
+            await _productService.SoftDeleteProductAsync(id);
             return NoContent();
         }
     }

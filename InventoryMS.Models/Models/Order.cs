@@ -10,6 +10,7 @@ namespace InventoryMS.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
     }
 }

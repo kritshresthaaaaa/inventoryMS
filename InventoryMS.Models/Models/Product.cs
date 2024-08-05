@@ -15,6 +15,7 @@ namespace InventoryMS.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
     }
 }

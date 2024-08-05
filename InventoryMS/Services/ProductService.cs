@@ -49,7 +49,10 @@ namespace InventoryMS.Services
         {
             await _repository.DeleteAsync(id);
         }
-
+        public async Task SoftDeleteProductAsync(int id)
+        {
+            await _repository.SoftDeleteAsync(id);
+        }
         public async Task<ProductDto> GetProductByIdAsync(int id)
         {
             var product = await _repository.GetByIdAsync(id);

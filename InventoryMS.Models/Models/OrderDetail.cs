@@ -16,5 +16,7 @@ namespace InventoryMS.Models.Models
         public decimal TotalPrice { get; set; }*/
         public Order Order { get; set; }
         public Product Product { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

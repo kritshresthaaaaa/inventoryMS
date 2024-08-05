@@ -12,5 +12,6 @@ namespace InventoryMS.Models.Models
         public string CategoryName { get; set; }
 
         public ICollection<Product> Products { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

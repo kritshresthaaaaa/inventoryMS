@@ -20,16 +20,30 @@ namespace InventoryMS.Controllers
             var orderDetails = await _orderDetailService.GetOrderDetailsAsync();
             return Ok(orderDetails);
         }
-      /*  [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<OrderDetailResponseDTO>>> GetOrderDetail(int id)
+
+        //get order detail from order id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderDetailResponseDTO>> GetOrderDetailByOrderId(int id)
         {
-            var orderDetail = await _orderDetailService.GetOrderDetailByIdAsync(id);
+            var orderDetail = await _orderDetailService.GetOrderDetailByOrderIdAsync(id);
             if (orderDetail == null)
             {
                 return NotFound();
             }
             return Ok(orderDetail);
-        }*/
+        }
+
+
+        /*  [HttpGet("{id}")]
+          public async Task<ActionResult<IEnumerable<OrderDetailResponseDTO>>> GetOrderDetail(int id)
+          {
+              var orderDetail = await _orderDetailService.GetOrderDetailByIdAsync(id);
+              if (orderDetail == null)
+              {
+                  return NotFound();
+              }
+              return Ok(orderDetail);
+          }*/
 
     }
 }

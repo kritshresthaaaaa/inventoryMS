@@ -10,5 +10,6 @@ namespace InventoryMS.Services.IServices
         Task<ProductDto> CreateProductAsync(ProductDto productDto);
         Task UpdateProductAsync(int id, ProductDto productDto);
         Task DeleteProductAsync(int id);
+        Task SoftDeleteProductAsync(int id);
     }
 }

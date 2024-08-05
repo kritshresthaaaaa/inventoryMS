@@ -16,5 +16,15 @@ namespace InventoryMS.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Order>().HasQueryFilter(o => !o.IsDeleted);
+            modelBuilder.Entity<OrderDetail>().HasQueryFilter(o => !o.IsDeleted);
+            modelBuilder.Entity<Product>().HasQueryFilter(o => !o.IsDeleted);
+            modelBuilder.Entity<Category>().HasQueryFilter(o => !o.IsDeleted);
+            modelBuilder.Entity<Customer>().HasQueryFilter(o => !o.IsDeleted);
+        }
+
     }
 }

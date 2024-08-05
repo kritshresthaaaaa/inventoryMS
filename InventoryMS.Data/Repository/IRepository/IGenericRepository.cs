@@ -13,7 +13,10 @@ namespace InventoryMS.Data.Repository.IRepository
         Task<TEntity> GetByIdAsync(int id);
         Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
+        Task SoftDeleteAsync(int id);
         Task DeleteAsync(int id);
         Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
+        //firstdefault
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeProperties);
     }
 }
