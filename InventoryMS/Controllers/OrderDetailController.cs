@@ -1,7 +1,8 @@
-﻿using InventoryMS.Models.DTO;
-using InventoryMS.Services.IServices;
+﻿
+using Infrastructure.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebHost.Services.IServices;
 
 namespace InventoryMS.Controllers
 {
@@ -21,7 +22,6 @@ namespace InventoryMS.Controllers
             return Ok(orderDetails);
         }
 
-        //get order detail from order id
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDetailResponseDTO>> GetOrderDetailByOrderId(int id)
         {
@@ -32,18 +32,5 @@ namespace InventoryMS.Controllers
             }
             return Ok(orderDetail);
         }
-
-
-        /*  [HttpGet("{id}")]
-          public async Task<ActionResult<IEnumerable<OrderDetailResponseDTO>>> GetOrderDetail(int id)
-          {
-              var orderDetail = await _orderDetailService.GetOrderDetailByIdAsync(id);
-              if (orderDetail == null)
-              {
-                  return NotFound();
-              }
-              return Ok(orderDetail);
-          }*/
-
     }
 }

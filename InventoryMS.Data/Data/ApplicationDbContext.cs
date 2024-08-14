@@ -1,10 +1,12 @@
-﻿using InventoryMS.Models;
-using InventoryMS.Models.Models;
+﻿
+using Domains.Models;
+using Domains.Models.BridgeEntity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace InventoryMS.Data
+namespace Infrastructure.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext, ISaveChangesInterceptor
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -15,6 +17,7 @@ namespace InventoryMS.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,6 +27,7 @@ namespace InventoryMS.Data
             modelBuilder.Entity<Product>().HasQueryFilter(o => !o.IsDeleted);
             modelBuilder.Entity<Category>().HasQueryFilter(o => !o.IsDeleted);
             modelBuilder.Entity<Customer>().HasQueryFilter(o => !o.IsDeleted);
+            modelBuilder.Entity<ProductCategory>().HasKey(pc => new { pc.ProductId, pc.CategoryId });
         }
 
     }

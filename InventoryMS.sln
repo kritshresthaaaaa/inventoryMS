@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryMS", "InventoryMS\InventoryMS.csproj", "{EE41B7E8-1C06-46AD-8C5C-6684F457AA24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebHost", "InventoryMS\WebHost.csproj", "{EE41B7E8-1C06-46AD-8C5C-6684F457AA24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryMS.Models", "InventoryMS.Models\InventoryMS.Models.csproj", "{D5C4C018-6C59-4025-9B3E-B18B8C91148F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domains", "InventoryMS.Models\Domains.csproj", "{D5C4C018-6C59-4025-9B3E-B18B8C91148F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryMS.Data", "InventoryMS.Data\InventoryMS.Data.csproj", "{8568B9DB-D209-44D1-93A0-038B0E601094}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "InventoryMS.Data\Infrastructure.csproj", "{8568B9DB-D209-44D1-93A0-038B0E601094}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

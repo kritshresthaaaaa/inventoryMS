@@ -1,6 +1,6 @@
-﻿using InventoryMS.Models.DTO;
+﻿using Infrastructure.DTO;
 
-namespace InventoryMS.Services.IServices
+namespace WebHost.Services.IServices
 {
     public interface IOrderDetailService
     {

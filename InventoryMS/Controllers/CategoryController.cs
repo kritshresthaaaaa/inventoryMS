@@ -1,7 +1,8 @@
-﻿using InventoryMS.Models.DTO;
-using InventoryMS.Services.IServices;
+﻿
+using Infrastructure.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebHost.Services.IServices;
 
 namespace InventoryMS.Controllers
 {
@@ -13,7 +14,7 @@ namespace InventoryMS.Controllers
 
         public CategoryController(ICategoryService categoryService)
         {
-            _categoryService = categoryService;    
+            _categoryService = categoryService;
         }
 
         [HttpGet]
@@ -35,12 +36,16 @@ namespace InventoryMS.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CategoryResponseDTO>> CreateCategory ([FromBody] CategoryPostDTO categoryPostDTO)
+        public async Task<ActionResult<CategoryResponseDTO>> CreateCategory([FromBody] CategoryPostDTO categoryPostDTO)
         {
             var newCategory = await _categoryService.CreateCategoryAsync(categoryPostDTO);
             return CreatedAtAction(nameof(GetCategory), new { id = newCategory.Id }, newCategory);
         }
-
-
+        [HttpDelete]
+        public async Task<ActionResult> SoftDeleteCategory(int id)
+        {
+            await _categoryService.SoftDeleteCategoryAsync(id);
+            return NoContent();
+        }
     }
 }

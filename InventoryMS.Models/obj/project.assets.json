@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\InventoryMS.Models.csproj",
-      "projectName": "InventoryMS.Models",
-      "projectPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\InventoryMS.Models.csproj",
+      "projectUniqueName": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\Domains.csproj",
+      "projectName": "Domains",
+      "projectPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\Domains.csproj",
       "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
       "outputPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\obj\\",
       "projectStyle": "PackageReference",

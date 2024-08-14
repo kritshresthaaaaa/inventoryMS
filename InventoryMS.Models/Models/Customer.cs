@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace InventoryMS.Models.Models
+using Domains.Models.BaseEntity;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domains.Models
 {
-    public class Customer
+    public class Customer: Entity
     {
-        public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public ICollection<Order> Orders { get; set; }
-        public bool IsDeleted { get; set; } = false;
+
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}";
     }

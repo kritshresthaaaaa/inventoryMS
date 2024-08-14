@@ -1,8 +1,9 @@
-﻿using InventoryMS.Models.DTO;
-using InventoryMS.Services.IServices;
+﻿
+using Infrastructure.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using WebHost.Services.IServices;
 
 namespace InventoryMS.Controllers
 {

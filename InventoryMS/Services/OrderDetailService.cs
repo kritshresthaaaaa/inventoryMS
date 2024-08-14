@@ -1,10 +1,11 @@
-﻿using InventoryMS.Data.Repository.IRepository;
-using InventoryMS.Models.DTO;
-using InventoryMS.Models.Models;
-using InventoryMS.Services.IServices;
+﻿
+using Domains.Models;
+using Infrastructure.DTO;
+using Infrastructure.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using WebHost.Services.IServices;
 
-namespace InventoryMS.Services
+namespace WebHost.Services
 {
     public class OrderDetailService : IOrderDetailService
     {
@@ -32,27 +33,26 @@ namespace InventoryMS.Services
                   TotalPrice = orderDetail.Quantity * orderDetail.Product.Price,
               };
           }*/
-
         public async Task<IEnumerable<OrderDetailResponseDTO>> GetOrderDetailsAsync()
         {
             var orderDetails = await _orderDetailRepository.GetAllAsync();
 
-            var orderDetailResponse = orderDetails.Select(
-                o => new OrderDetailResponseDTO
-                {
-                    ProductId = o.ProductId,
-                    Quantity = o.Quantity,
-                    UnitPrice = o.Product.Price,
-                    ProductName = o.Product.Name,
-                    OrderId = o.OrderId,
-                    TotalPrice = o.Quantity * o.Product.Price,
-                }
+            // Project order details into OrderDetailResponseDTO records
+            var orderDetailResponse = orderDetails.Select(o => new OrderDetailResponseDTO
+            (
+                o.ProductId,
+                o.Product.Name,
+                o.Quantity,
+                o.Product.Price,
+                o.Quantity * o.Product.Price,
+                o.OrderId
+            ));
 
-                );
-
-            return await orderDetailResponse.ToListAsync();
-
+            // Convert the IEnumerable<OrderDetailResponseDTO> to a List and return
+            return orderDetailResponse.ToList(); // Use ToList() instead of ToListAsync()
         }
+
+
         public async Task<OrderDetailFromOrderIdResponseDTO> GetOrderDetailByOrderIdAsync(int id)
         {
             if (id == 0)
@@ -74,18 +74,18 @@ namespace InventoryMS.Services
                 }
 
                 return new OrderDetailFromOrderIdResponseDTO
-                {
-                    ProductId = orderDetail.ProductId,
-                    Quantity = orderDetail.Quantity,
-                    UnitPrice = orderDetail.Product.Price,
-                    ProductName = orderDetail.Product.Name,
-                    OrderId = orderDetail.OrderId,
-                    TotalPrice = orderDetail.Quantity * orderDetail.Product.Price,
-                    CustomerName = orderDetail.Order.Customer.FullName,
-                    CustomerEmail = orderDetail.Order.Customer.Email,
-                    OrderDate = orderDetail.Order.OrderDate,
-                    CustomerId = orderDetail.Order.CustomerId
-                };
+                (
+                    ProductId : orderDetail.ProductId,
+                    Quantity : orderDetail.Quantity,
+                    UnitPrice : orderDetail.Product.Price,
+                    ProductName : orderDetail.Product.Name,
+                    OrderId : orderDetail.OrderId,
+                    TotalPrice : orderDetail.Quantity * orderDetail.Product.Price,
+                    CustomerName : orderDetail.Order.Customer.FullName,
+                    CustomerEmail : orderDetail.Order.Customer.Email,
+                    OrderDate : orderDetail.Order.OrderDate,
+                    CustomerId : orderDetail.Order.CustomerId
+                );
             }
         }
 

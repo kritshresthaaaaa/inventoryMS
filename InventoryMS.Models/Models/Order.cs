@@ -1,16 +1,15 @@
-﻿using InventoryMS.Models.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿
 
-namespace InventoryMS.Models
+using Domains.Models.BaseEntity;
+
+namespace Domains.Models
 {
-    public class Order
+    public class Order:Entity
     {
-        public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
-        public bool IsDeleted { get; set; } = false;
 
     }
 }

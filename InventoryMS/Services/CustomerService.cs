@@ -1,11 +1,9 @@
-﻿using InventoryMS.Data.Repository.IRepository;
-using InventoryMS.Models;
-using InventoryMS.Models.DTO;
-using InventoryMS.Models.Models;
-using InventoryMS.Services.IServices;
-using Microsoft.EntityFrameworkCore;
+﻿using Domains.Models;
+using Infrastructure.DTO;
+using Infrastructure.Repository.IRepository;
+using WebHost.Services.IServices;
 
-namespace InventoryMS.Services
+namespace WebHost.Services
 {
     public class CustomerService : ICustomerService
     {
@@ -27,14 +25,14 @@ namespace InventoryMS.Services
             };
             await _repository.AddAsync(newCustomer);
             return new CustomerResponseDTO
-            {
-                CustomerId = newCustomer.CustomerId,
-                FirstName = newCustomer.FirstName,
-                LastName = newCustomer.LastName,
-                Email = newCustomer.Email,
-                PhoneNumber = newCustomer.PhoneNumber,
-                Address = newCustomer.Address
-            };
+            (
+                CustomerId: newCustomer.Id,
+                FirstName: newCustomer.FirstName,
+                LastName: newCustomer.LastName,
+                Email: newCustomer.Email,
+                PhoneNumber: newCustomer.PhoneNumber,
+                Address: newCustomer.Address
+            );
         }
 
         public Task DeleteCustomerAsync(int id)
@@ -46,15 +44,15 @@ namespace InventoryMS.Services
         {
             var customer = await _repository.GetByIdAsync(id);
             return new CustomerResponseDTO
-            {
-                CustomerId = customer.CustomerId,
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                Email = customer.Email,
-                PhoneNumber = customer.PhoneNumber,
-                Address = customer.Address
+            (
+                CustomerId: customer.Id,
+                FirstName: customer.FirstName,
+                LastName: customer.LastName,
+                Email: customer.Email,
+                PhoneNumber: customer.PhoneNumber,
+                Address: customer.Address
 
-            };
+            );
 
         }
 
@@ -62,14 +60,14 @@ namespace InventoryMS.Services
         {
             var customers = await _repository.GetAllAsync();
             return customers.Select(c => new CustomerResponseDTO
-            {
-                CustomerId = c.CustomerId,
-                FirstName = c.FirstName,
-                LastName = c.LastName,
-                Email = c.Email,
-                PhoneNumber = c.PhoneNumber,
-                Address = c.Address,
-            }).ToList();
+            (
+                 c.Id,
+                c.FirstName,
+                c.LastName,
+               c.Email,
+               c.PhoneNumber,
+                c.Address
+            )).ToList();
 
         }
 

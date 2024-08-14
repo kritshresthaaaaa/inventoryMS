@@ -1,15 +1,15 @@
-﻿using InventoryMS.Models;
-using InventoryMS.Models.DTO;
-
-namespace InventoryMS.Services.IServices
+﻿using Infrastructure.DTO;
+namespace WebHost.Services.IServices
 {
     public interface IProductService
     {
-        Task<IEnumerable<ProductDto>> GetProductsAsync();
-        Task<ProductDto> GetProductByIdAsync(int id);
-        Task<ProductDto> CreateProductAsync(ProductDto productDto);
-        Task UpdateProductAsync(int id, ProductDto productDto);
+        Task<IEnumerable<ProductResponseDTO>> GetProductsAsync();
+        Task<ProductResponseDTO> GetProductByIdAsync(int id);
+        Task<ProductResponseDTO> CreateProductAsync(ProductPostDTO productDto);
+        Task UpdateProductPatchAsync(int id, ProductPatchDTO productDto);
         Task DeleteProductAsync(int id);
         Task SoftDeleteProductAsync(int id);
+        Task<List<ProductStockDTO>> ReduceStockQuantitiesAsync(List<OrderDetailPostDTO> orderDetails);
+
     }
 }

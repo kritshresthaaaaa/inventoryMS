@@ -1,9 +1,9 @@
-﻿using InventoryMS.Models;
-using InventoryMS.Models.DTO;
-using InventoryMS.Services.IServices;
+﻿
+using Infrastructure.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebHost.Services.IServices;
 
 namespace InventoryMS.Controllers
 {
@@ -19,14 +19,14 @@ namespace InventoryMS.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductResponseDTO>>> GetProducts()
         {
             var products = await _productService.GetProductsAsync();
             return Ok(products);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        public async Task<ActionResult<ProductResponseDTO>> GetProduct(int id)
         {
             var product = await _productService.GetProductByIdAsync(id);
             if (product == null)
@@ -37,25 +37,25 @@ namespace InventoryMS.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> CreateProduct([FromBody] ProductDto productDTO)
+        public async Task<ActionResult<ProductResponseDTO>> CreateProduct([FromBody] ProductPostDTO productPostDTO)
         {
-            var newProduct = await _productService.CreateProductAsync(productDTO);
+            var newProduct = await _productService.CreateProductAsync(productPostDTO);
+
+            if (newProduct == null)
+            {
+                return BadRequest();
+            }
+            
+
             return CreatedAtAction(nameof(GetProduct), new { id = newProduct.Id }, newProduct);
         }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateProduct(int id, [FromBody] ProductDto productDTO)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> UpdateProductPatch(int id, [FromBody] ProductPatchDTO productDTO)
         {
-            await _productService.UpdateProductAsync(id, productDTO);
+            await _productService.UpdateProductPatchAsync(id, productDTO);
             return NoContent();
         }
 
-/*        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteProduct(int id)
-        {
-            await _productService.DeleteProductAsync(id);
-            return NoContent();
-        }*/
         [HttpDelete("{id}")]
         public async Task<ActionResult> SoftDeleteProduct(int id)
         {

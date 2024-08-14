@@ -1,8 +1,8 @@
-﻿using InventoryMS.Models;
-using InventoryMS.Models.DTO;
-using InventoryMS.Services.IServices;
-using Microsoft.AspNetCore.Http;
+﻿
+using Infrastructure.DTO;
 using Microsoft.AspNetCore.Mvc;
+using WebHost.DTO;
+using WebHost.Services.IServices;
 
 namespace InventoryMS.Controllers
 {
@@ -11,12 +11,14 @@ namespace InventoryMS.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _saleService;
+        private readonly IProductService _productService;
         private readonly ILogger<OrderController> _logger;
 
-        public OrderController(IOrderService saleService, ILogger<OrderController> logger)
+        public OrderController(IOrderService saleService, ILogger<OrderController> logger, IProductService productService)
         {
             _saleService = saleService;
             _logger = logger;
+            _productService = productService;
         }
 
         [HttpGet]
@@ -39,14 +41,23 @@ namespace InventoryMS.Controllers
         [HttpPost]
         public async Task<ActionResult<OrderPostDTO>> CreateSale(OrderPostDTO saleDto)
         {
-            var newSale = await _saleService.CreateSaleAsync(saleDto);
+            var productStockList = await _productService.ReduceStockQuantitiesAsync(saleDto.OrderDetails);
+            var postSales = new OrderPostDTOController()
+            {
+                CustomerId = saleDto.CustomerId,
+                OrderDetailsWithProductRemaingStock = productStockList,
+            };
+
+            var newSale = await _saleService.CreateSaleAsync(postSales);
+
             return CreatedAtAction(nameof(GetSale), new { id = newSale.Id }, newSale);
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSale(int id, OrderPostDTO saleDto)
         {
-            if (id != saleDto.CustomerId) 
+            if (id != saleDto.CustomerId)
             {
                 return BadRequest();
             }
@@ -54,43 +65,48 @@ namespace InventoryMS.Controllers
             await _saleService.UpdateSaleAsync(id, saleDto);
             return NoContent();
         }
-
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSale(int id)
+        public async Task<ActionResult> SoftDeleteSalesAsync(int id)
         {
-            await _saleService.DeleteSaleAsync(id);
+            await _saleService.SoftDeleteSaleAsync(id);
             return NoContent();
         }
-      /*  [HttpGet("per-date")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerDateAsync([FromQuery] DateTime date)
+        [HttpGet("customer/{customerId}")]
+        public async Task<ActionResult<IEnumerable<OrderResponseDTO>>> GetOrdersByCustomerId(int customerId)
         {
-            _logger.LogInformation($"Received date: {date}");
-
-            var utcDate = date.ToUniversalTime();
-            _logger.LogInformation($"Converted to UTC date: {utcDate}");
-
-            var sales = await _saleService.GetSalesPerDateAsync(utcDate);
-
-            if (sales == null || !sales.Any())
-            {
-                return NotFound();
-            }
-            return Ok(sales);
+            var orders = await _saleService.GetSalesPerCustomerAsync(customerId);
+            return Ok(orders);
         }
+        /*  [HttpGet("per-date")]
+          public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerDateAsync([FromQuery] DateTime date)
+          {
+              _logger.LogInformation($"Received date: {date}");
 
-        [HttpGet("per-month")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerMonth([FromQuery] int year, [FromQuery] int month)
-        {
-            return Ok(await _saleService.GetSalesPerMonthAsync(year, month));
-        }
+              var utcDate = date.ToUniversalTime();
+              _logger.LogInformation($"Converted to UTC date: {utcDate}");
+
+              var sales = await _saleService.GetSalesPerDateAsync(utcDate);
+
+              if (sales == null || !sales.Any())
+              {
+                  return NotFound();
+              }
+              return Ok(sales);
+          }
+
+          [HttpGet("per-month")]
+          public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerMonth([FromQuery] int year, [FromQuery] int month)
+          {
+              return Ok(await _saleService.GetSalesPerMonthAsync(year, month));
+          }
 
 
-        [HttpGet("per-week")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerWeek([FromQuery] DateTime startDate)
-        {
-            var utcStartDate = startDate.ToUniversalTime();
-            return Ok(await _saleService.GetSalesPerWeekAsync(utcStartDate));
-        }*/
+          [HttpGet("per-week")]
+          public async Task<ActionResult<IEnumerable<Order>>> GetSalesPerWeek([FromQuery] DateTime startDate)
+          {
+              var utcStartDate = startDate.ToUniversalTime();
+              return Ok(await _saleService.GetSalesPerWeekAsync(utcStartDate));
+          }*/
 
     }
 }

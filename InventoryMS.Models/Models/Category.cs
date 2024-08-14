@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domains.Models.BaseEntity;
+using Domains.Models.BridgeEntity;
 
-namespace InventoryMS.Models.Models
+namespace Domains.Models
 {
-    public class Category
+    public class Category: Entity
     {
-        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
 
-        public ICollection<Product> Products { get; set; }
-        public bool IsDeleted { get; set; } = false;
+        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
+
     }
 }

@@ -1,7 +1,7 @@
-﻿using InventoryMS.Models.DTO;
+﻿using Infrastructure.DTO;
 using System.Collections.Generic;
 
-namespace InventoryMS.Services.IServices
+namespace WebHost.Services.IServices
 {
     public interface ICustomerService
     {

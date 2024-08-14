@@ -1,10 +1,9 @@
-using InventoryMS.Data;
-using InventoryMS.Data.Repository.IRepository;
-using InventoryMS.Data.Repository;
-using InventoryMS.Services;
-using InventoryMS.Services.IServices;
+using Infrastructure.Data;
+using Infrastructure.Repository;
+using Infrastructure.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using WebHost.Services;
+using WebHost.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 

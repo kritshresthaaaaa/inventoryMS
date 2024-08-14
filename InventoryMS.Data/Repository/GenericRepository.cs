@@ -4,11 +4,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryMS.Data.Repository.IRepository;
+using Domains.Models.BaseEntity;
+using Infrastructure.Data;
+using Infrastructure.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-namespace InventoryMS.Data.Repository
+namespace Infrastructure.Repository
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity>  where TEntity : Entity
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
@@ -19,13 +21,15 @@ namespace InventoryMS.Data.Repository
         }
         public async Task<IQueryable<TEntity>> GetAllAsync()
         {
-            /*            var result= await _dbSet.ToListAsync();
-            */
             return _dbSet; // _dbSet consists of queryable data
         }
         public async Task<TEntity> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
+        }
+        public IQueryable<TEntity> GetQueryable()
+        {
+            return _dbSet.AsQueryable();              
         }
 
         public async Task AddAsync(TEntity entity)
@@ -33,7 +37,11 @@ namespace InventoryMS.Data.Repository
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
-
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
+        {
+            await _dbSet.AddRangeAsync(entities);
+            await _context.SaveChangesAsync();
+        }
         public async Task UpdateAsync(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;

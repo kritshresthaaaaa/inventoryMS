@@ -876,14 +876,14 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "InventoryMS.Models/1.0.0": {
+      "Domains/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "compile": {
-          "bin/placeholder/InventoryMS.Models.dll": {}
+          "bin/placeholder/Domains.dll": {}
         },
         "runtime": {
-          "bin/placeholder/InventoryMS.Models.dll": {}
+          "bin/placeholder/Domains.dll": {}
         }
       }
     }
@@ -2302,15 +2302,15 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "InventoryMS.Models/1.0.0": {
+    "Domains/1.0.0": {
       "type": "project",
-      "path": "../InventoryMS.Models/InventoryMS.Models.csproj",
-      "msbuildProject": "../InventoryMS.Models/InventoryMS.Models.csproj"
+      "path": "../InventoryMS.Models/Domains.csproj",
+      "msbuildProject": "../InventoryMS.Models/Domains.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "InventoryMS.Models >= 1.0.0",
+      "Domains >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.7",
@@ -2324,9 +2324,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Data\\InventoryMS.Data.csproj",
-      "projectName": "InventoryMS.Data",
-      "projectPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Data\\InventoryMS.Data.csproj",
+      "projectUniqueName": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Data\\Infrastructure.csproj",
+      "projectName": "Infrastructure",
+      "projectPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Data\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
       "outputPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Data\\obj\\",
       "projectStyle": "PackageReference",
@@ -2350,8 +2350,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\InventoryMS.Models.csproj": {
-              "projectPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\InventoryMS.Models.csproj"
+            "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\Domains.csproj": {
+              "projectPath": "D:\\Skills\\Innovate\\IMS\\InventoryMS\\InventoryMS.Models\\Domains.csproj"
             }
           }
         }
